@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Updates</title>
+    <style>
+        @font-face {
+            font-family: 'Roboto';
+            src: url('Roboto-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }   
+        @font-face {
+            font-family: 'Roboto';
+            src: url('Roboto-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Roboto';
+            src: url('Roboto-Italic.ttf') format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }     
+        html {
+            font-family: 'Roboto', sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }     
+        .hDiv {
+            background-color: #202c34;
+            width: 100%;
+            color: #fefeff;
+            text-align: center;
+            height: 160px;
+            border-bottom: 2px solid;
+            border-color: #3b4c5e;
+        }
+        .mainT {
+            padding-top: 20px;
+            font-weight: 700;
+        }
+        .hDiv a { 
+            text-decoration: none;
+            color: #fefeff;
+            padding: 10px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 80%;
+            margin: auto;
+            padding: 20px 0;
+        }
+        .box {
+            background-color: #e9e9e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+            flex: 1 1 200px;
+        }
+        .box h3 {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .box p {
+            margin-bottom: .5px;
+        }
+        .fDiv {
+            background-color: #202c34;
+            width: 100%;
+            color: #fefeff;
+            text-align: center;
+            height: 50px;
+            border-bottom: 2px solid;
+            border-color: #3b4c5e;
+            font-size: 0.8em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hDiv">
+        <h2 class="mainT">Header logo </h2>
+        <div class="hLinks">
+            <a href="main.html">Home</a>
+            <a href="page2.html">Posts</a>
+            <a href="page3.html">Weather</a>
+        </div>
+    </div>
+
+    <div class="container" id="container">
+    </div>
+
+    <div class="fDiv">
+        Copyright ©
+    </div>
+
+    <script>
+        const locations = [
+            { name: "Gjøvik", lat: 60.7942, lon: 10.6772 },
+            { name: "Trondheim", lat: 63.4305, lon: 10.3951 },
+            { name: "Oslo", lat: 59.9139, lon: 10.7522 },
+            { name: "Tromsø", lat: 69.6496, lon: 18.9560 },
+            { name: "Bergen", lat: 60.39299, lon: 5.32415 },
+            { name: "Narvik", lat: 68.4364, lon: 17.3979 }
+        ]; //cities ive chosen 6 should be enough
+
+        async function fetchWeather() { // choosing to use async and await for this task
+            const container = document.getElementById("container");
+            container.innerHTML = ''; //here i remove the data previously to update
+
+            for (const location of locations) {// goes through the list of cities
+                const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&current_weather=true`); 
+                const data = await response.json();
+                const currentWeather = data.current_weather;
+
+                const weatherBox = document.createElement("div");
+                weatherBox.className = "box";
+                weatherBox.innerHTML = `
+                    <h3>${location.name}</h3>
+                    <p>Temperature: ${currentWeather.temperature}°C</p>
+                    <p>Wind Speed: ${currentWeather.windspeed} km/h</p>
+                `;// adding the current data
+                container.appendChild(weatherBox);// putting my data into my container
+            }
+        }
+
+        
+        fetchWeather();// the first check cus the interval doesnt do one onload
+        
+        setInterval(fetchWeather, 300000); //5 min wait before update info
+    </script>
+</body>
+</html>

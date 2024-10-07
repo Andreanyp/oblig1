@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <style>
+            @font-face {
+                font-family: 'Roboto';
+                src: url('Roboto-Regular.ttf') format('truetype');
+                font-weight: 400;
+                font-style: normal;
+            }   
+            @font-face {
+                font-family: 'Roboto';
+                src: url('Roboto-Bold.ttf') format('truetype');
+                font-weight: 700;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Roboto';
+                src: url('Roboto-Italic.ttf') format('truetype');
+                font-weight: 400;
+                font-style: italic;
+            }     
+            html{
+                font-family: 'Roboto', sans-serif;
+            }
+            body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }     
+            .hDiv {
+                background-color: #202c34;
+                width: 100%;
+                color: #fefeff;
+                text-align: center;
+                height: 160px;
+                border-bottom: 2px solid;
+                border-color: #3b4c5e;
+            }
+            .mainT {
+                padding-top: 20px;
+                font-weight: 700;
+                
+            }
+            .hDiv a { 
+                text-decoration: none;
+                color: #fefeff;
+                padding: 10px;
+            }
+            .hLinks {
+                width: 60%;
+                margin: auto;
+                position: relative;
+
+            }
+            .hLinks a {
+                margin: 5%;
+            }
+            .sec1 {
+                background-color: #202c34;
+                width: 100%;
+                color: #fefeff;
+                text-align: left;
+                font-family: 'roboto', sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center; 
+                
+            }
+            .sec1 h1 {
+                margin: 0px;
+                text-align: left;
+            }
+            .info {
+                margin-top: 50px;
+                margin-right: 50px;
+                margin-bottom: 50px;
+                width: 30%;
+                height: 400px;
+            
+                
+            }
+            .image {
+                margin-top: 50px;
+                margin-bottom: 50px;
+                width: 30%;
+                background-color: #70747c;
+                height: 400px;
+            }
+           
+            .gridHead {
+                text-align: center;
+            }
+            .container {
+                display: grid;
+                width: 60%;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                grid-template-areas: 
+                    "boxA boxB"
+                    "boxC boxD";
+                justify-content: center; 
+                align-content: center;  
+                margin: auto;
+            }
+            .BoxA {
+                grid-area: boxA;
+            }
+            .BoxB {
+                grid-area: boxB;
+                
+            }
+            .BoxC {
+                grid-area: boxC;
+                
+            }
+            .BoxD {
+                grid-area: boxD;
+            }
+            .BoxA, .BoxB, .BoxC, .BoxD {
+                min-height: 150px;
+                height: auto; 
+                width: 100%;
+            }
+            .BoxA, .BoxD {
+                border: 5px solid #2c76ca;
+                border-radius: 20px;
+            }
+            .BoxB, .BoxC {
+                text-align: center;
+            }
+            .quoteBox{
+                margin-top: 100px;
+                background-color: #e8e4ec;
+                border: 2px solid #e3e1e5;
+                height: 200px;
+                display: flex; 
+                justify-content: center;
+                align-items: center;     
+            }
+            .quote {
+                width: 80%;
+                margin:auto;
+                font-style:italic ;
+            }
+            .author {
+                font-style: normal;
+                font-weight: 700;
+            
+        }
+        .fDiv {
+            background-color: #202c34;
+                width: 100%;
+                color: #fefeff;
+                text-align: center;
+                height: 50px;
+                border-bottom: 2px solid;
+                border-color: #3b4c5e;
+                font-size:0.8em ;
+                
+        }
+        .signup {
+            background-color: #007BFF; 
+            width: 60%; 
+            margin: 50px auto; 
+            padding: 20px; 
+            color: #fff; 
+            display: flex; 
+            align-items: center;
+        }
+
+        .textContainer {
+            width: 70%;
+        }
+
+        .buttonContainer {
+            width: 30%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .signupButton {
+            background-color: #007BFF;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s; 
+        }
+
+        .signupButton:hover {
+            background-color: #004fa3;
+            color: #ffffff;
+        }
+
+
+
+            
+        </style>
+    </head>
+    <body>
+        <div class="hDiv">
+            <h2 class="mainT">Header logo </h1>
+            <div class="hLinks">
+                <a  href="main.html">Home</a>
+                <a  href="page2.html">Posts</a>
+                <a  href="page3.html">Weather</a>
+            </div>
+        </div>
+        <div class="sec1">
+            <div class="info">
+                <h1>This website is awesome</h1>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis ex arcu. Morbi congue libero felis, at placerat ex rhoncus eu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi volutpat sed felis aliquam ullamcorper. In volutpat rutrum elit, sed feugiat libero bibendum non. Duis consequat, odio nec molestie dictum, enim mauris dapibus magna, non vehicula massa arcu eget odio. Maecenas interdum tortor vel augue sollicitudin venenatis.
+            </div>
+            <div class="image"></div>
+        </div>
+        <div class="bDiv">
+            <h1 class="gridHead">Some Random Information.</h1>
+            <div class="container">
+                <div class="BoxA">
+                </div>
+                <div class="BoxB">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a lorem risus. Nam quam urna, viverra vel scelerisque vitae, viverra sed lorem. In vehicula ornare lectus, vel aliquam orci tincidunt eget. Maecenas molestie commodo felis. Aenean et hendrerit mi. Sed dapibus urna vel tincidunt mollis. Aenean porttitor auctor luctus. Sed dignissim massa nisl, vel feugiat elit pretium quis. Nam aliquet erat nunc, eu tincidunt libero malesuada non. Duis tincidunt condimentum tortor,
+                </div>
+                <div class="BoxC">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget quam tincidunt, rhoncus nisl vel, feugiat ligula. Donec neque odio, blandit vel lacus sit amet, egestas ornare mi. In efficitur eleifend elit ut tincidunt. Nunc finibus magna odio, non efficitur justo auctor in. Nunc at justo at nunc tincidunt porta nec cursus nunc. Nam sed mi viverra, maximus purus eget, condimentum nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                </div>
+                <div class="BoxD">
+                </div>
+            </div> 
+            <div class="quoteBox">
+                <p class="quote">
+                This is an inspiring quote, or a testimonial from a customer. Maybe it's just filling up space, or maybe people will actually read it. Who knows? All i know is taht it looks nice
+                <span class="author">-Thor</span>
+                </p>
+            </div>
+            <div class="signup">
+                <div class="textContainer">
+                    <h4>Call to action! It's time!</h4>
+                    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur.</p>
+                </div>
+                <div class="buttonContainer">
+                    <button class="signupButton">Sign Up</button>
+                </div>
+            </div>
+        </div>
+        <div class="fDiv">
+            Copyright ©
+        </div>
+
+    </body>
+</html>

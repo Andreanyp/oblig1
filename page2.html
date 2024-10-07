@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Posts Page</title>
+    <style>
+        @font-face {
+            font-family: 'Roboto';
+            src: url('Roboto-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }   
+        @font-face {
+            font-family: 'Roboto';
+            src: url('Roboto-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Roboto';
+            src: url('Roboto-Italic.ttf') format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 110vh;
+            margin: 0;
+        }     
+        html {
+            font-family: 'Roboto', sans-serif;
+        }
+        .hDiv {
+            background-color: #202c34;
+            width: 100%;
+            color: #fefeff;
+            text-align: center;
+            height: 160px;
+            border-bottom: 2px solid;
+            border-color: #3b4c5e;
+        }
+        .mainT {
+            padding-top: 20px;
+            font-weight: 700;
+        }
+        .hDiv a { 
+            text-decoration: none;
+            color: #fefeff;
+            padding: 10px;
+        }
+        .hLinks {
+            width: 60%;
+            margin: auto;
+            position: relative;
+        }
+        .hLinks a {
+            margin: 5%;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px 0;
+        }
+        .post {
+            background-color: #e9e9e9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        .post h3 {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .post p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .fDiv {
+            background-color: #202c34;
+            width: 100%;
+            color: #fefeff;
+            text-align: center;
+            height: 50px;
+            border-bottom: 2px solid;
+            border-color: #3b4c5e;
+            font-size: 0.8em;
+            margin-top: 20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="hDiv">
+        <h2 class="mainT">Header logo </h2>
+        <div class="hLinks">
+            <a href="main.html">Home</a>
+            <a href="page2.html">Posts</a>
+            <a href="page3.html">Weather</a>
+        </div>
+    </div>
+
+    <div class="container" id="container">
+        
+    </div>
+
+    <div class="fDiv">
+        Copyright ©
+    </div>
+
+    <script>
+            window.onload = function() {
+            window.scrollTo(0, 0); 
+        };
+            let currentLoading = false; // added this cus i noticed that the site added more posts then i wanted each scroll
+            const container = document.getElementById("container");
+            function fetchPosts() {
+                if (currentLoading) return;
+                currentLoading = true;
+
+                const xhttp  = new XMLHttpRequest();
+                xhttp.open('GET', 'https://jsonplaceholder.typicode.com/posts?_limit=3', true);
+                xhttp.onload = function () { //call to function when the data is loaded
+                    if (this.status === 200) {// checks if the request is "OK"
+                        const posts = JSON.parse(this.responseText);
+                        console.log(this.responseText);
+                        posts.forEach(post => {
+                            const postDiv = document.createElement("div");
+                            postDiv.className = "post";
+                            postDiv.innerHTML = `
+                                <h3>${post.title}</h3>
+                                <p>${post.body}</p>
+                            `;
+                            container.appendChild(postDiv);
+                        });
+                        currentLoading = false;
+                    }
+                };
+                xhttp.send();
+            }
+
+            function Scroll() {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                    fetchPosts();
+                }
+            }
+
+            window.addEventListener("scroll", Scroll);
+
+            
+            fetchPosts();
+    </script>
+</body>
+</html>
